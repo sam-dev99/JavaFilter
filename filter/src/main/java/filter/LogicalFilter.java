@@ -36,20 +36,20 @@ public class LogicalFilter extends Filter<Boolean> {
 		// we initialize the state of filter to true with an "AND" operator, that way
 		// "true and false"
 		// will result to false and "true and true" results in true
-		if (this.logic_op == "and") {
+		if (this.logic_op.equals("and")) {
 
 			this.state_of_filter = true;
 		}
 
-		else if (this.logic_op == "or") {
+		else if (this.logic_op.equals("or")) {
 			this.state_of_filter = false;
 		}
 
 		for (Filter filter : this.filters) {
-			if (this.logic_op == "or") {
+			if (this.logic_op.equals("or")) {
 				filter.matches(map);
 				this.state_of_filter = this.state_of_filter || filter.getFilterState();
-			} else if (this.logic_op == "and") {
+			} else if (this.logic_op.equals("and")) {
 				filter.matches(map);
 				this.state_of_filter = this.state_of_filter && filter.getFilterState();
 

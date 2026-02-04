@@ -64,21 +64,21 @@ public class DefaultFilter extends Filter<String> {
 					int stored_val = Integer.parseInt(stored_value);
 					int input_val = Integer.parseInt(input_value);
 
-					if (op == "=") {
+					if (op.equals("=")) {
 						this.state_of_filter = (stored_val == input_val);
-					} else if (op == ">") {
+					} else if (op.equals(">")) {
 						this.state_of_filter = (input_val > stored_val);
 					}
 
-					else if (op == ">=") {
+					else if (op.equals(">=")) {
 						this.state_of_filter = (input_val >= stored_val);
 					}
 
-					else if (op == "<") {
+					else if (op.equals("<")) {
 						this.state_of_filter = (input_val < stored_val);
 					}
 
-					else if (op == "<=") {
+					else if (op.equals("<=")) {
 						this.state_of_filter = (input_val <= stored_val);
 					}
 				} else {
@@ -108,32 +108,9 @@ public class DefaultFilter extends Filter<String> {
 	public HashMap<String, Pair<String, String>> getFilterRules() {
 		return this.key_operation_pair;
 	}
-	
-	public void setFilterState(Boolean state)
-	{
+
+	public void setFilterState(Boolean state) {
 		this.state_of_filter = state;
 	}
 
-//	@Override
-//	public String toString()
-//	{
-//		
-//		System.out.println("we are inside tostring");
-////		return "{"
-//		String className = getClass().getName();
-//		try {
-//			Constructor<?> classT = getClass().getConstructor();
-//			Parameter[] parameters = classT.getParameters();
-//			for (Parameter parameter : parameters)
-//			{
-//				System.out.println("name of parameter: " + parameter.getName());
-//			}
-//		} catch (NoSuchMethodException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		
-//		return className;
-//	}
 }
