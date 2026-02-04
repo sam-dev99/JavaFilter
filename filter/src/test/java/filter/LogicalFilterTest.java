@@ -52,8 +52,8 @@ class LogicalFilterTest {
 
 		this.logicalFilter.addFilter(testFilters);
 
-		Boolean returnedState = this.logicalFilter.matches(user);
-		assertTrue(returnedState);
+//		Boolean returnedState = this.logicalFilter.matches(user);
+		assertTrue(this.logicalFilter.matches(user));
 
 	}
 
@@ -79,11 +79,11 @@ class LogicalFilterTest {
 
 		this.logicalFilter.addFilter(testFilters);
 
-		Boolean returnedState = this.logicalFilter.matches(user);
-		assertFalse(returnedState);
+//		Boolean returnedState = this.logicalFilter.matches(user);
+		assertFalse(this.logicalFilter.matches(user));
 
 	}
-	
+
 	@Test
 	void testLogicalTrueANDFilter() {
 
@@ -107,8 +107,8 @@ class LogicalFilterTest {
 
 		this.logicalFilter.addFilter(testFilters);
 
-		Boolean returnedState = this.logicalFilter.matches(user);
-		assertTrue(returnedState);
+//		Boolean returnedState = this.logicalFilter.matches(user);
+		assertTrue(this.logicalFilter.matches(user));
 
 	}
 
@@ -134,9 +134,9 @@ class LogicalFilterTest {
 
 		this.logicalFilter.addFilter(testFilters);
 
-		Boolean returnedState = this.logicalFilter.matches(user);
-		assertFalse(returnedState);
+//		Boolean returnedState = this.logicalFilter.matches(user);
+		assertFalse(this.logicalFilter.matches(user));
 
-	}	
+	}
 
 }

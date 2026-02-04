@@ -1,12 +1,10 @@
 package filter;
 
 import java.io.Serializable;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Parameter;
 import java.util.Map;
 
-public abstract class Filter<T> implements Serializable {
+public abstract class Filter implements Serializable {
 
 	/**
 	 * 
@@ -19,9 +17,9 @@ public abstract class Filter<T> implements Serializable {
 
 	}
 
-	public abstract T matches(Map<String, String> map);
+	public abstract Boolean matches(Map<String, String> map);
 
-	public abstract Boolean getFilterState();
+//	public abstract Boolean getFilterState();
 
 	public static Object parseFilter(String filterName) {
 //		String className = getClass().getName();

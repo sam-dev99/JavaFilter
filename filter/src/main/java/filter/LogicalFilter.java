@@ -3,7 +3,7 @@ package filter;
 import java.util.HashSet;
 import java.util.Map;
 
-public class LogicalFilter extends Filter<Boolean> {
+public class LogicalFilter extends Filter {
 
 	/**
 	 * 
@@ -11,7 +11,7 @@ public class LogicalFilter extends Filter<Boolean> {
 	private static final long serialVersionUID = 1L;
 	private HashSet<Filter> filters;
 	private String logic_op;
-	private boolean state_of_filter = false;
+	private boolean state_of_current_filter = false;
 
 	public LogicalFilter() {
 		super();
@@ -36,33 +36,33 @@ public class LogicalFilter extends Filter<Boolean> {
 		// we initialize the state of filter to true with an "AND" operator, that way
 		// "true and false"
 		// will result to false and "true and true" results in true
-		if (this.logic_op.equals("and")) {
+		if (this.logic_op.equalsIgnoreCase("and")) {
 
-			this.state_of_filter = true;
+			this.state_of_current_filter = true;
 		}
 
-		else if (this.logic_op.equals("or")) {
-			this.state_of_filter = false;
+		else if (this.logic_op.equalsIgnoreCase("or")) {
+			this.state_of_current_filter = false;
 		}
 
 		for (Filter filter : this.filters) {
-			if (this.logic_op.equals("or")) {
-				filter.matches(map);
-				this.state_of_filter = this.state_of_filter || filter.getFilterState();
-			} else if (this.logic_op.equals("and")) {
-				filter.matches(map);
-				this.state_of_filter = this.state_of_filter && filter.getFilterState();
+			if (this.logic_op.equalsIgnoreCase("or")) {
+				boolean cur_filter_result = filter.matches(map);
+				this.state_of_current_filter = this.state_of_current_filter || cur_filter_result;
+			} else if (this.logic_op.equalsIgnoreCase("and")) {
+				boolean cur_filter_result = filter.matches(map);
+				this.state_of_current_filter = this.state_of_current_filter && cur_filter_result;
 
 			}
 		}
 
-		return this.getFilterState();
+		return this.state_of_current_filter;
 	}
 
-	@Override
-	public Boolean getFilterState() {
-		return this.state_of_filter;
-	}
+//	@Override
+//	public Boolean getFilterState() {
+//		return this.state_of_filter;
+//	}
 
 	public void addFilter(HashSet<Filter> filters) {
 		if (this.filters == null) {

@@ -7,13 +7,13 @@ import org.javatuples.Pair;
 
 import Misc.Utils;
 
-public class DefaultFilter extends Filter<String> {
+public class DefaultFilter extends Filter {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private boolean state_of_filter = false;
+//	private boolean state_of_filter = false;
 	private HashMap<String, Pair<String, String>> key_operation_pair = null;
 
 	public DefaultFilter() {
@@ -38,13 +38,14 @@ public class DefaultFilter extends Filter<String> {
 	}
 
 	@Override
-	public String matches(Map<String, String> map) {
+	public Boolean matches(Map<String, String> map) {
 		for (String property : map.keySet()) {
 			// First we check if the property matches a Regular expression
 			if (this.getRegex() != null) {
 				if (property.matches(this.getRegex())) {
-					this.state_of_filter = true;
-					return property + " " + map.get(property).toLowerCase();
+					return true;
+//					this.state_of_filter = true;
+//					return property + " " + map.get(property).toLowerCase();
 				}
 			}
 
@@ -65,37 +66,43 @@ public class DefaultFilter extends Filter<String> {
 					int input_val = Integer.parseInt(input_value);
 
 					if (op.equals("=")) {
-						this.state_of_filter = (stored_val == input_val);
+//						this.state_of_filter = (stored_val == input_val);
+						return (stored_val == input_val);
 					} else if (op.equals(">")) {
-						this.state_of_filter = (input_val > stored_val);
+//						this.state_of_filter = (input_val > stored_val);
+						return (input_val > stored_val);
 					}
 
 					else if (op.equals(">=")) {
-						this.state_of_filter = (input_val >= stored_val);
+//						this.state_of_filter = (input_val >= stored_val);
+						return (input_val >= stored_val);
 					}
 
 					else if (op.equals("<")) {
-						this.state_of_filter = (input_val < stored_val);
+//						this.state_of_filter = (input_val < stored_val);
+						return (input_val < stored_val);
 					}
 
 					else if (op.equals("<=")) {
-						this.state_of_filter = (input_val <= stored_val);
+//						this.state_of_filter = (input_val <= stored_val);
+						return (input_val <= stored_val);
 					}
 				} else {
-					this.state_of_filter = stored_value.compareTo(input_value) == 0 ? true : false;
+					return stored_value.equals(input_value);
 				}
 
-				return this.state_of_filter ? (property + " " + input_value) : "No matches Found";
+//				return this.state_of_filter ? (property + " " + input_value) : "No matches Found";
 			}
 		}
 
-		return "No matches Found";
+//		return "No matches Found";
+		return false;
 	}
 
-	@Override
-	public Boolean getFilterState() {
-		return this.state_of_filter;
-	}
+//	@Override
+//	public Boolean getFilterState() {
+//		return this.state_of_filter;
+//	}
 
 	public void addFilterRule(String property, String operation, String value) {
 		this.key_operation_pair.put(property, new Pair<String, String>(operation, value));
@@ -109,8 +116,8 @@ public class DefaultFilter extends Filter<String> {
 		return this.key_operation_pair;
 	}
 
-	public void setFilterState(Boolean state) {
-		this.state_of_filter = state;
-	}
+//	public void setFilterState(Boolean state) {
+//		this.state_of_filter = state;
+//	}
 
 }

@@ -27,26 +27,26 @@ public class Main {
 		 */
 		Filter regexFilter = new DefaultFilter("firstname", "=", "Joe", "^.*[name]+$"); // Create a filter using your
 																						// API.
-		System.out.println(regexFilter.matches(user));
-		System.out.println("Regex filter state:" + Utils.assertTrue(regexFilter.getFilterState())); // Filter should
+//		System.out.println(regexFilter.matches(user));
+		System.out.println("Regex filter state:" + Utils.assertTrue(regexFilter.matches(user))); // Filter should
 																									// match.
 
 		// Default Filter returns {property + value}
-		System.out.println(filter.matches(user));
-		System.out.println("Default filter state: " + Utils.assertTrue(filter.getFilterState())); // Filter should
-																									// match.
+//		System.out.println(filter.matches(user));
+		System.out.println("Default filter state: " + Utils.assertTrue(filter.matches(user))); // Filter should
+																								// match.
 
 		user.put("age", "25");
-		System.out.println(filter.matches(user));
-		System.out.println("Default filter state: " + Utils.assertFalse(!filter.getFilterState())); // Filter should not
+//		System.out.println(filter.matches(user));
+		System.out.println("Default filter state: " + Utils.assertFalse(!filter.matches(user))); // Filter should not
 																									// match.
 
 		// EXAMPLE 2
 		// create boolean literals
 		Filter trueFilter = new TrueFilter();
-		trueFilter.matches(user);
-		System.out.println("True Filter state: " + Utils.assertTrue(trueFilter.getFilterState())); // Filter should
-																									// match.
+//		trueFilter.matches(user);
+		System.out.println("True Filter state: " + Utils.assertTrue(trueFilter.matches(user))); // Filter should
+																								// match.
 //		
 //		
 //		// EXAMPLE 3
@@ -57,8 +57,8 @@ public class Main {
 		Filter orFilter = new LogicalFilter(filters, "or"); // Create a 'trueFilter OR filter'.
 
 		// the orFilter must return true since trueFilter's state is true.
-		orFilter.matches(user);
-		System.out.println("Logical OR filter state: " + Utils.assertTrue(orFilter.getFilterState()));
+//		orFilter.matches(user);
+		System.out.println("Logical OR filter state: " + Utils.assertTrue(orFilter.matches(user)));
 
 		/**
 		 * The following parses a new Filter object through the parseFilter static
@@ -74,9 +74,10 @@ public class Main {
 		 */
 
 		LogicalFilter andFilter = (LogicalFilter) Filter.parseFilter("LogicalFilter");
+		andFilter.setLogicalOperation("and");
 		andFilter.addFilter(filters);
-		andFilter.matches(user);
-		System.out.println("Logical AND filter state: " + Utils.assertFalse(andFilter.getFilterState()));
+//		andFilter.matches(user);
+		System.out.println("Logical AND filter state: " + Utils.assertFalse(andFilter.matches(user)));
 
 	}
 

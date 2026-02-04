@@ -2,13 +2,13 @@ package filter;
 
 import java.util.Map;
 
-public class TrueFilter extends Filter<Boolean> {
+public class TrueFilter extends Filter {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private boolean state_of_filter = false;
+//	private boolean state_of_filter = false;
 
 	public TrueFilter() {
 		super();
@@ -16,19 +16,19 @@ public class TrueFilter extends Filter<Boolean> {
 
 	@Override
 	public Boolean matches(Map<String, String> map) {
-		this.state_of_filter = true;
+//		this.state_of_filter = true;
 
 		return true;
 	}
 
-	@Override
-	public Boolean getFilterState() {
-		return this.state_of_filter;
-	}
-	
-	public void setFilterState(Boolean state)
-	{
-		this.state_of_filter = state;
-	}
+//	@Override
+//	public Boolean getFilterState() {
+//		return this.state_of_filter;
+//	}
+//	
+//	public void setFilterState(Boolean state)
+//	{
+//		this.state_of_filter = state;
+//	}
 
 }

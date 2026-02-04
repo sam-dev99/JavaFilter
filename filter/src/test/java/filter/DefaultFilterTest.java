@@ -52,29 +52,29 @@ class DefaultFilterTest {
 		this.defaultFilter.addFilterRule("firstname", "=", "Joe");
 
 		this.defaultFilter.matches(user);
-		assertFalse(this.defaultFilter.getFilterState() == true);
+		assertFalse(this.defaultFilter.matches(user));
 	}
 
-	@Test
-	void inputMatchesAlphaNumericRule() {
-		Map<String, String> user = new HashMap<>();
-		user.put("firstname", "Joe");
-		user.put("lastname", "Bloggs");
-		user.put("role", "administrator");
-		user.put("age", "35");
-
-		// create rule that can accept the above custom input
-		this.defaultFilter.addFilterRule("firstname", "=", "Joe");
-
-		// test the custom input, should return "Joe Bloggs" because in case of
-		// alphanumeric property it returns
-		// key and value
-		assertEquals(this.defaultFilter.matches(user), "firstname Joe".toLowerCase());
-
-		// test alphaNumeric different value than filter
-		user.put("firstname", "not joe");
-		assertNotEquals(this.defaultFilter.matches(user), "firstname Joe".toLowerCase());
-	}
+//	@Test
+//	void inputMatchesAlphaNumericRule() {
+//		Map<String, String> user = new HashMap<>();
+//		user.put("firstname", "Joe");
+//		user.put("lastname", "Bloggs");
+//		user.put("role", "administrator");
+//		user.put("age", "35");
+//
+//		// create rule that can accept the above custom input
+//		this.defaultFilter.addFilterRule("firstname", "=", "Joe");
+//
+//		// test the custom input, should return "Joe Bloggs" because in case of
+//		// alphanumeric property it returns
+//		// key and value
+//		assertEquals(this.defaultFilter.matches(user), "firstname Joe".toLowerCase());
+//
+//		// test alphaNumeric different value than filter
+//		user.put("firstname", "not joe");
+//		assertNotEquals(this.defaultFilter.matches(user), "firstname Joe".toLowerCase());
+//	}
 
 	@Test
 	void inputMatchesNumericRule() {
@@ -90,8 +90,8 @@ class DefaultFilterTest {
 		// test the custom input, should return "Joe Bloggs" because in case of
 		// alphanumeric property it returns
 		// key and value
-		this.defaultFilter.matches(user);
-		assertTrue(this.defaultFilter.getFilterState() == true);
+//		this.defaultFilter.matches(user);
+		assertTrue(this.defaultFilter.matches(user));
 	}
 
 	@Test
@@ -108,13 +108,13 @@ class DefaultFilterTest {
 		// test the custom input, should return "Joe Bloggs" because in case of
 		// alphanumeric property it returns
 		// key and value
-		this.defaultFilter.matches(user);
-		assertTrue(this.defaultFilter.getFilterState() == true);
+//		this.defaultFilter.matches(user);
+		assertTrue(this.defaultFilter.matches(user));
 
 		// test for > age
 		user.put("age", "36");
-		this.defaultFilter.matches(user);
-		assertFalse(this.defaultFilter.getFilterState() == true);
+//		this.defaultFilter.matches(user);
+		assertFalse(this.defaultFilter.matches(user));
 	}
 
 	@Test
@@ -131,13 +131,13 @@ class DefaultFilterTest {
 		// test the custom input, should return "Joe Bloggs" because in case of
 		// alphanumeric property it returns
 		// key and value
-		this.defaultFilter.matches(user);
-		assertTrue(this.defaultFilter.getFilterState() == true);
+//		this.defaultFilter.matches(user);
+		assertTrue(this.defaultFilter.matches(user));
 
 		// test for > age
 		user.put("age", "36");
-		this.defaultFilter.matches(user);
-		assertFalse(this.defaultFilter.getFilterState() == true);
+//		this.defaultFilter.matches(user);
+		assertFalse(this.defaultFilter.matches(user));
 	}
 
 	@Test
@@ -155,12 +155,12 @@ class DefaultFilterTest {
 		// alphanumeric property it returns
 		// key and value
 		this.defaultFilter.matches(user);
-		assertTrue(this.defaultFilter.getFilterState() == true);
+		assertTrue(this.defaultFilter.matches(user));
 
 		// test for > age
 		user.put("age", "34");
 		this.defaultFilter.matches(user);
-		assertFalse(this.defaultFilter.getFilterState() == true);
+		assertFalse(this.defaultFilter.matches(user));
 	}
 
 	@Test
@@ -178,12 +178,12 @@ class DefaultFilterTest {
 		// alphanumeric property it returns
 		// key and value
 		this.defaultFilter.matches(user);
-		assertTrue(this.defaultFilter.getFilterState() == true);
+		assertTrue(this.defaultFilter.matches(user));
 
 		// test for > age
 		user.put("age", "34");
 		this.defaultFilter.matches(user);
-		assertFalse(this.defaultFilter.getFilterState() == true);
+		assertFalse(this.defaultFilter.matches(user));
 	}
 
 	@Test
@@ -196,7 +196,7 @@ class DefaultFilterTest {
 
 		// this regerular expression matches any string containing 'name' in it.
 		String testRegex = "^.*[name]$";
-		String testName = "firstname joe";
+//		String testName = "firstname joe";
 		this.defaultFilter.setRegex(testRegex);
 
 		// adding a generic rule. it doesn't matter in this case
@@ -204,10 +204,10 @@ class DefaultFilterTest {
 
 		// the regext should match and state of filter must be true.
 		// also it should return in this case "firstname Joe";
-		String returnedProperty = this.defaultFilter.matches(user);
+//		String returnedProperty = this.defaultFilter.matches(user);
 
-		assertTrue(this.defaultFilter.getFilterState());
-		assertEquals(returnedProperty, testName);
+		assertTrue(this.defaultFilter.matches(user));
+//		assertEquals(returnedProperty, testName);
 
 	}
 
