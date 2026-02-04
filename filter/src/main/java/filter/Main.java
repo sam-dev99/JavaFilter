@@ -20,6 +20,8 @@ public class Main {
 		// EXAMPLE 1
 		// Create a filter which matches all administrators older than 30:
 		Filter filter = new DefaultFilter("age", ">", "30"); // Create a filter using your API.
+		
+		System.out.println(filter);
 
 		/**
 		 * the following filter makes use of the regular expression *name*, this will

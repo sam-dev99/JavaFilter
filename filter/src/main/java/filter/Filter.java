@@ -50,6 +50,12 @@ public abstract class Filter implements Serializable {
 		return null;
 
 	}
+	
+	@Override
+	public String toString()
+	{
+		return getClass().getSimpleName();
+	}
 
 	public void setRegex(String regex) {
 		this.regex = regex;
